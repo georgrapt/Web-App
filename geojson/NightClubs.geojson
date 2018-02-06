@@ -1,0 +1,33 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "osm_id": "258083766", "code": 2202, "fclass": "nightclub", "name": "Sophienclub" }, "geometry": { "type": "Point", "coordinates": [ 13.4019887, 52.525124 ] } },
+{ "type": "Feature", "properties": { "osm_id": "262818281", "code": 2202, "fclass": "nightclub", "name": "Sky Club" }, "geometry": { "type": "Point", "coordinates": [ 13.4163878, 52.523279 ] } },
+{ "type": "Feature", "properties": { "osm_id": "323230648", "code": 2202, "fclass": "nightclub", "name": "Lumumba" }, "geometry": { "type": "Point", "coordinates": [ 13.423726, 52.5202909 ] } },
+{ "type": "Feature", "properties": { "osm_id": "323230650", "code": 2202, "fclass": "nightclub", "name": "A-Lounge" }, "geometry": { "type": "Point", "coordinates": [ 13.4237562, 52.5201925 ] } },
+{ "type": "Feature", "properties": { "osm_id": "429735547", "code": 2202, "fclass": "nightclub", "name": "Clarchens Ballhaus" }, "geometry": { "type": "Point", "coordinates": [ 13.39691, 52.5264743 ] } },
+{ "type": "Feature", "properties": { "osm_id": "482074051", "code": 2202, "fclass": "nightclub", "name": "Last Cathedral" }, "geometry": { "type": "Point", "coordinates": [ 13.4103081, 52.5294386 ] } },
+{ "type": "Feature", "properties": { "osm_id": "652884290", "code": 2202, "fclass": "nightclub", "name": "Calabash" }, "geometry": { "type": "Point", "coordinates": [ 13.4010242, 52.5334336 ] } },
+{ "type": "Feature", "properties": { "osm_id": "670069373", "code": 2202, "fclass": "nightclub", "name": "NBI Club" }, "geometry": { "type": "Point", "coordinates": [ 13.401179, 52.53567 ] } },
+{ "type": "Feature", "properties": { "osm_id": "736787851", "code": 2202, "fclass": "nightclub", "name": "1820" }, "geometry": { "type": "Point", "coordinates": [ 13.4107269, 52.5267887 ] } },
+{ "type": "Feature", "properties": { "osm_id": "910429971", "code": 2202, "fclass": "nightclub", "name": "Ballhaus Berlin" }, "geometry": { "type": "Point", "coordinates": [ 13.380294, 52.5320796 ] } },
+{ "type": "Feature", "properties": { "osm_id": "918183904", "code": 2202, "fclass": "nightclub", "name": "Club R8" }, "geometry": { "type": "Point", "coordinates": [ 13.389936, 52.5162164 ] } },
+{ "type": "Feature", "properties": { "osm_id": "959533704", "code": 2202, "fclass": "nightclub", "name": "Traffic" }, "geometry": { "type": "Point", "coordinates": [ 13.4167905, 52.5228981 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1144034120", "code": 2202, "fclass": "nightclub", "name": "am to pm" }, "geometry": { "type": "Point", "coordinates": [ 13.4034635, 52.5229379 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1145853246", "code": 2202, "fclass": "nightclub", "name": "Hafenbar" }, "geometry": { "type": "Point", "coordinates": [ 13.4078078, 52.5220335 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1162812586", "code": 2202, "fclass": "nightclub", "name": "Weekend Club" }, "geometry": { "type": "Point", "coordinates": [ 13.4164231, 52.5229029 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1450635672", "code": 2202, "fclass": "nightclub", "name": "Gruner Salon" }, "geometry": { "type": "Point", "coordinates": [ 13.4122202, 52.5269462 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1450635676", "code": 2202, "fclass": "nightclub", "name": "Roter Salon" }, "geometry": { "type": "Point", "coordinates": [ 13.4116224, 52.5271131 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1741956106", "code": 2202, "fclass": "nightclub", "name": "P.O.P." }, "geometry": { "type": "Point", "coordinates": [ 13.3987995, 52.5222341 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1813690782", "code": 2202, "fclass": "nightclub", "name": "Trust" }, "geometry": { "type": "Point", "coordinates": [ 13.4007894, 52.5224064 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1820069776", "code": 2202, "fclass": "nightclub", "name": "Bohannon Club" }, "geometry": { "type": "Point", "coordinates": [ 13.4069198, 52.5235719 ] } },
+{ "type": "Feature", "properties": { "osm_id": "2291850208", "code": 2202, "fclass": "nightclub", "name": "hausungarn" }, "geometry": { "type": "Point", "coordinates": [ 13.4059948, 52.5210712 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3121055734", "code": 2202, "fclass": "nightclub", "name": "Flow Bar" }, "geometry": { "type": "Point", "coordinates": [ 13.393681, 52.5261173 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3783242657", "code": 2202, "fclass": "nightclub", "name": "M-BIA" }, "geometry": { "type": "Point", "coordinates": [ 13.4092179, 52.5226335 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3783275205", "code": 2202, "fclass": "nightclub", "name": "Sharlie Cheen Bar" }, "geometry": { "type": "Point", "coordinates": [ 13.4006637, 52.5301791 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3783290025", "code": 2202, "fclass": "nightclub", "name": "ACUD" }, "geometry": { "type": "Point", "coordinates": [ 13.4008094, 52.5335177 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4172803384", "code": 2202, "fclass": "nightclub", "name": "8MM" }, "geometry": { "type": "Point", "coordinates": [ 13.4115684, 52.5312243 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4217156190", "code": 2202, "fclass": "nightclub", "name": "Beate Uwe" }, "geometry": { "type": "Point", "coordinates": [ 13.419024, 52.5174812 ] } }
+]
+}

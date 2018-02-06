@@ -1,0 +1,21 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "osm_id": "1813566963", "code": 2529, "fclass": "beauty_shop", "name": "ANails" }, "geometry": { "type": "Point", "coordinates": [ 13.4023933, 52.5220963 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1813690802", "code": 2529, "fclass": "beauty_shop", "name": "Yi-Spa" }, "geometry": { "type": "Point", "coordinates": [ 13.3993188, 52.5232264 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1818863021", "code": 2529, "fclass": "beauty_shop", "name": "The Different Scent" }, "geometry": { "type": "Point", "coordinates": [ 13.3985931, 52.5253361 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1819471625", "code": 2529, "fclass": "beauty_shop", "name": "Kiehl's" }, "geometry": { "type": "Point", "coordinates": [ 13.4074684, 52.5247756 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1819471626", "code": 2529, "fclass": "beauty_shop", "name": "MAC" }, "geometry": { "type": "Point", "coordinates": [ 13.4028731, 52.5245194 ] } },
+{ "type": "Feature", "properties": { "osm_id": "1928652995", "code": 2529, "fclass": "beauty_shop", "name": "Schönheitskultur" }, "geometry": { "type": "Point", "coordinates": [ 13.403181, 52.534093 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3307700083", "code": 2529, "fclass": "beauty_shop", "name": "Schönheitswahn" }, "geometry": { "type": "Point", "coordinates": [ 13.4192381, 52.5352027 ] } },
+{ "type": "Feature", "properties": { "osm_id": "3787297590", "code": 2529, "fclass": "beauty_shop", "name": "Babor Flagship Store" }, "geometry": { "type": "Point", "coordinates": [ 13.3901265, 52.5149869 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4172699052", "code": 2529, "fclass": "beauty_shop", "name": "Bella e Sana Kosmetikstudio" }, "geometry": { "type": "Point", "coordinates": [ 13.4102308, 52.531 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4222272394", "code": 2529, "fclass": "beauty_shop", "name": "Céleste" }, "geometry": { "type": "Point", "coordinates": [ 13.3849956, 52.5295916 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4261575761", "code": 2529, "fclass": "beauty_shop", "name": "EsteticaBeauty" }, "geometry": { "type": "Point", "coordinates": [ 13.3994496, 52.5290051 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4261575777", "code": 2529, "fclass": "beauty_shop", "name": "Nyce Treatments" }, "geometry": { "type": "Point", "coordinates": [ 13.4082386, 52.528501 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4261575779", "code": 2529, "fclass": "beauty_shop", "name": "Rio Waxing" }, "geometry": { "type": "Point", "coordinates": [ 13.4059914, 52.5285309 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4396230901", "code": 2529, "fclass": "beauty_shop", "name": "Nr.104" }, "geometry": { "type": "Point", "coordinates": [ 13.381074, 52.5298768 ] } },
+{ "type": "Feature", "properties": { "osm_id": "4396230907", "code": 2529, "fclass": "beauty_shop", "name": "Studio Wandel" }, "geometry": { "type": "Point", "coordinates": [ 13.3800959, 52.5295852 ] } }
+]
+}

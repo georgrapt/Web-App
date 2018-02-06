@@ -1,0 +1,412 @@
+<!--Name: Georgios Raptakis -->
+<!--M.N. : 374030 -->
+<!--Date: 20.04.2017 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8"/>
+	
+      <title>Berlin Restaurants</title>
+      <link rel="stylesheet" href="http://openlayers.org/en/v3.12.0/css/ol.css" type="text/css">
+      <script src="http://openlayers.org/en/v3.14.1/build/ol.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.6.0/ol.js"></script>
+      <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  	  <!-- Using the open layers switcher -->
+       <link rel="stylesheet" href="src/ol3-layerswitcher.css" type="text/css"/>
+       <script src="src/ol3-layerswitcher.js"></script>
+  <style >
+
+       .ol-popup {
+        position: absolute;
+        background-color: white;
+        -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+      }
+      .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }<!-- -->
+      .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 8px;
+      }
+      .ol-popup-closer:after {
+        content: "✖";
+      }
+  
+      </style>
+</head>
+<body style= "margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px; width:100%; background-color:rgba(80, 15, 15, .6)">
+	
+	<div id="page"> 
+
+      <table height="200px" width="100%" background="images/restaurant.png">
+            <tr>
+                <td colspan="1"></td>
+                <td colspan="5" style="font-size: 2em; font-weight: bold;" valign="bottom"><font color="#fff">Restaurant Ranking</font></td>
+            </tr>
+            <tr>
+                <td colspan="1"></td>
+                <td colspan="5" style="font-size: 1em; font-weight: bold;" valign="top"><font color="#fff">Find the best option</font></td>
+            </tr>
+            <tr>
+			     <td width="500px"></td>
+                 <td width="100px" id="output"> </td>
+                 <td width="70px"> </td>			
+	          				
+                 <td width="120px">
+			        <select id="RestaurantType" onchange="selectPOIs()">
+					    <option selected value="None">--</option>
+                        <option value="Russian">Russian Cuisine</option> 
+                        <option value="Greek" >Greek Cuisine</option>
+						<option value="Italian">Italian Cuisine</option>
+						<option value="Spanish">Spanish Cuisine</option>
+						<option value="Mexican">Mexican Cuisine</option>
+						<option value="Arab">Arab Cuisine</option>
+						<option value="Persian">Persian Cuisine</option>
+						<option value="Turkish">Turkish Cuisine</option>
+                      </select> 
+			    	</td>
+                 
+                 <td width="80px"><a href="/" onclick="myFunction()" >[Information] </a></td>
+            </tr>
+      </table>
+     
+		<!-- Map --> 
+        <div id="map" style="position:absolute; top:220px; width:100%; height:65%; ">
+			<div id="popup" class="ol-popup" style = "background-color:rgba(64, 25, 25, .3); width:100px; height:320px;">
+			    <a href="#" id="popup-closer" class="ol-popup-closer" ></a>
+			    <div id="popup-content" style = "text-align:center;font-weight: bold;"></div>
+			</div>
+		</div>
+		
+	<!-- Footer --> 
+        <div  style="bottom: 1px; position:absolute; width:100%; height:40px; background:#B43104;">
+            <p style= "text-align: right; font-size:80%; color: grey;">
+			    Webpage made by <a href="/" target="_blank">[GIORGOS RAPTAKIS]</a>
+			 </p>
+        </div>
+		 
+	</div>
+
+	<script type="text/javascript">
+	
+//===============================================================================================================
+	 //Layers 	 basemaps				
+//=============================================================================================================================
+   		var LayerBingRoad = new ol.layer.Tile({
+			title: 'Bing Road',
+			type: 'base',
+			visible: true,
+			source: new ol.source.BingMaps({
+				key:' F29AFM7GfSYWl8V47nMW~VO6yAbL3EhN5TKSRGO9pew~AlqJyeM-5_j6Lk6_MR5Agj9TJEsvYQrYYzijZnJf2Pj8lY-NThlO72rciFYwZXwc',
+			    imagerySet: 'Road'})	
+		 });
+		var LayerBingAerial = new ol.layer.Tile({
+			title: 'Bing Aerial',
+			type: 'base',
+			visible: false,
+			source: new ol.source.BingMaps({
+			    key:' F29AFM7GfSYWl8V47nMW~VO6yAbL3EhN5TKSRGO9pew~AlqJyeM-5_j6Lk6_MR5Agj9TJEsvYQrYYzijZnJf2Pj8lY-NThlO72rciFYwZXwc',
+				imagerySet: 'Aerial'})	
+		});
+
+		var LayerOSM = new ol.layer.Tile({
+			title: 'OpenStreetMap',
+			type: 'base',
+			visible: false,
+			source: new ol.source.OSM()
+		});
+					
+ 		var layers = [ LayerBingRoad, LayerBingAerial, LayerOSM ];
+//=============================================================================================================================
+          		//Layers	Points of Interest			
+//============================================================================================================================
+		//--------------------- Points of Interest Style----------------------------------------------------------------------------------------------------
+		var iconBeautyShop = new ol.style.Style({
+			image: new ol.style.Icon(({
+				anchor: [0.5, 46],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'pixels',
+				scale:0.06,
+				src: 'images/beautyshop.png'
+			}))
+		});
+		var iconArtGalleries = new ol.style.Style({
+			image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+				anchor: [0.5, 46],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'pixels',
+				scale:0.05,
+				src: 'images/art.png'
+			}))
+		});
+		var iconBars = new ol.style.Style({
+			image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+				anchor: [0.5, 46],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'pixels',
+				scale:0.05,
+				src: 'images/bars.png'
+			}))
+		});
+		var iconBusStop = new ol.style.Style({
+			image: new ol.style.Icon(({
+				anchor: [0.5, 46],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'pixels',
+				scale:0.08,
+				src: 'images/Bus.png'
+			}))
+		});
+
+	//--------------------- Points of Interest Layer------------------------------------------
+		var BeautyShop = new ol.layer.Vector({
+			title: 'BeautyShop',
+			visible: false,
+    		source: new ol.source.Vector({
+				url: 'geojson/BeautyShop.geojson',
+				projection:'EPSG:4326',
+				format: new ol.format.GeoJSON(),
+			}),
+			style: iconBeautyShop
+		});
+						
+		var Bars = new ol.layer.Vector({
+			title: 'Bars',
+			visible: false,
+    		source: new ol.source.Vector({
+				url: 'geojson/Bars.geojson',
+				projection:'EPSG:4326',
+				format: new ol.format.GeoJSON(),
+			}),
+			style: iconBars
+		});
+						
+		var ArtGalleries = new ol.layer.Vector({
+			title: 'ArtGalleries',
+			visible: false,
+    		source: new ol.source.Vector({
+				url: 'geojson/ArtGalleries.geojson',
+				projection:'EPSG:4326',
+				format: new ol.format.GeoJSON(),
+			}),
+			style: iconArtGalleries
+		});
+						
+		var BusStation = new ol.layer.Vector({
+			title: 'BusStop',
+			visible: false,
+    		source: new ol.source.Vector({
+				url: 'geojson/BusStation.geojson',
+				projection:'EPSG:4326',
+				format: new ol.format.GeoJSON(),
+			}),
+			style: iconBusStop
+		});
+										 
+		var PointOfInterest = [	BeautyShop ,Bars, ArtGalleries, BusStation];
+
+//=================================================================================================
+// ---------Style of restaurants------//
+//=================================================================================================
+var default_style = [new ol.style.Style({
+	image: new ol.style.Circle({
+	radius: 4,
+    fill: new ol.style.Fill({
+      color: 'rgba(255,0,0,0.4)',
+    }),
+    stroke: new ol.style.Stroke({
+      color: '#ff0000',
+      opacity: 0.4
+    }),
+	})
+})];
+
+var RestaurantsLayers = new ol.layer.Vector({
+    title: 'Restaurant',
+    source: new ol.source.Vector({
+       url: 'geojson/HereMarRestaurant.geojson',
+        format: new ol.format.GeoJSON({
+			 defaultDataProjection :'EPSG:4326', 
+             projection: 'EPSG:3857'
+		})
+	}),
+	style: default_style
+    });
+
+//============================================================================================================	
+
+    var projection = ol.proj.get('EPSG:3857');
+//-----------Elements that make up the popup  ------------------
+    var container = document.getElementById('popup');
+    var content = document.getElementById('popup-content');
+    var closer = document.getElementById('popup-closer');
+
+	// Create an overlay to anchor the popup to the map.
+	 var overlay = new ol.Overlay(({
+        element: container,
+		autoPanMargin:5,
+        autoPan: true, 
+        autoPanAnimation: {
+          duration: 1000
+        },
+      }));
+	  
+	  // Add a click handler to hide the popup.
+	   closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
+	  
+	  //Create the Map
+      var map = new ol.Map({
+	  layers:[new ol.layer.Group({title: 'Background maps', layers: layers  }),
+	          new ol.layer.Group({title: 'Point Of Interest', layers: PointOfInterest }),
+	          new ol.layer.Group({title: 'Restaurants', layers:  [RestaurantsLayers] }),
+			   ],	   
+	    overlays: [overlay],
+        target: 'map',
+        view: new ol.View({
+	        center: ol.proj.transform([13.4025, 52.5275], 'EPSG:4326', 'EPSG:3857'),
+			projection: projection,
+            zoom: 16
+        })
+      });
+	  
+      //------- Object LayerSwitcher---------//
+	   var layerSwitcher = new ol.control.LayerSwitcher({tipLabel: 'Leyenda'});
+	   
+	    map.addControl(layerSwitcher);
+		
+	   layerSwitcher.showPanel();
+	   
+//=================================================================================================
+// ---------Hover of the pointermove on the Restaurants------//
+//=================================================================================================  
+	  
+	    var featureOverlay = new ol.FeatureOverlay({
+            map: map,
+            style: new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                color: '#0d47a1',
+                width: 2}),
+                image: new ol.style.Circle({
+                     radius: 5,
+                    stroke: new ol.style.Stroke({
+                       color:'rgb(10%,95%, 10%)',
+                       width:2
+                    }),
+					fill:new ol.style.Fill({
+			            color: 'rgb(10%,95%, 30%)'
+					}),
+                })
+            })
+        });
+		
+		 map.on('pointermove', function (evt) {
+            featureOverlay.getFeatures().clear();
+            features = [];
+            map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+				if(feature.get('title')!=null){
+					features.push(feature);
+				}
+            });
+            features.forEach(function(f){
+                 featureOverlay.addFeature(f);
+             });
+        });
+	  
+//=================================================================================================
+// ---------Clicking on the Restaurants------//
+//=================================================================================================  
+	    map.on('dblclick', function (evt) {
+            var coordinate = evt.coordinate;
+			
+			map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+			if(feature.get('title')!=null){
+                content.innerHTML = '<h3 style= " background-color:rgba(54, 54, 25, .5); text-align: center;text-transform: uppercase;">' + feature.get('title') +'</p>';
+			    content.innerHTML += '<img src=images/'+feature.get('restaura_5')+' height="100" width="200" align="middle">';
+				
+				content.innerHTML += '<p style= "color:	#3f0000;">Cuisine: ' +feature.get('restaura10') +' ! <br>Rate: ' +feature.get('restaura_8') +'/10 ! <br> Opening Hours: ' +feature.get('restaura_9') + '!</p>';
+
+			    content.innerHTML += '<p><a href="https://www.google.gr/#q=' + feature.get('title') +'" target="_blank"> Visit Restaurants site!</a> </p>';
+			    content.innerHTML += '<p style= "color:	#3f0000;">Address: ' +feature.get('vicinity') +'!</p>';
+          
+			overlay.setPosition(coordinate);
+			}
+			});
+        });
+		
+//===============================================================================================================
+	 //Info-button function				
+//=============================================================================================================================
+            function myFunction() {
+                    var NewWindow=window.open('','','height=400,width=300');
+				    NewWindow.document.write("<h3>Web-based Restaurant rating website</h3>");
+				    NewWindow.document.write("<p><strong>Pop-up Restaurant's details</strong> making double click on it!</p>");            
+	                NewWindow.document.write("<p>The User can choose the <strong>background Map</strong>: <ul><li>OpenStreetMap</li><li>Bing Aerial</li><li>Bing Road</li></ul></p>");			    
+	                NewWindow.document.write("<p>The User can choose <strong>Points of Interest</strong>: <ul><li>BeautyShop</li><li>ArtGalleries</li><li>Bars </li><li>Bus Stop</li></ul></p>");			    
+				};
+//=================================================================================================
+// ---------Selection of Restaurants------//
+//=================================================================================================  
+	// The followinf function would be used to give style to the selected Points.
+	var highlightStyle = new ol.style.Style({
+			stroke: new ol.style.Stroke({
+				color: '#00FF00',
+				width: 2
+			}),
+			fill: new ol.style.Fill({
+				color: '#00FF00'
+			})
+		});
+
+	function selectPOIs(){
+
+		var typeselect = document.getElementById("RestaurantType").value;
+
+            $.getJSON('geojson/HereMarRestaurant.geojson', function (data) {
+               var subset = { "type": "FeatureCollection", "features": [] };
+                $.each(data.features, function (key, val) {				
+                       if (val.properties.restaura10==typeselect) {
+                            subset.features.push(val.properties);
+						}
+				}) 
+				if (typeselect != "None"){
+                    var NewWindow=window.open('','','height=200,width=300');
+					NewWindow.document.write("<p><strong>Number of existing "+typeselect +" restaurants : "+ subset.features.length+ "</strong> </p>");
+				    NewWindow.document.write("<p>Unfortunately even if we can read and proceed our data we can not visualise them!</p>");            
+				}	 
+            });
+    };
+    </script>
+	</body>
+</html>
